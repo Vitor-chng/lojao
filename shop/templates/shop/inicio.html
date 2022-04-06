@@ -1,20 +1,10 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Lojinha</title>
-    </head>
-    <body>
-        <header>
-            <h1><a href="/">Bora gastar</a></h1>
-        </header>
-        
-        {% for post in produtos %}
-            <article>
-                <h2><a href="">{{ post.nome }}</a></h2>
-                <p>{{ post.text|linebreaksbr }}</p>
-                <p>preço: {{ post.preco }}</p>
-            </article>
-        {% endfor %}
+{% extends 'shop/base.html' %}
+{% block content %}
+    {% for post in produtos %}
+        <article class="post">
+            <h2><a href="{% url 'pag2' pk=post.pk %}">{{ post.nome }}</a></h2>
+            <p>Quantidade: {{ post.estoque|linebreaksbr }}</p>
+            <p>Preço: {{ post.preco|linebreaksbr }}</p>
         </article>
-    </body>
-</html>
+    {% endfor %}
+{% endblock %}

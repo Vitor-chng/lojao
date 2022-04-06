@@ -1,0 +1,8 @@
+{% extends 'shop/base.html' %}
+
+{% block content %}
+    <article class="post">
+        <h2>{{ post.nome }}</h2>
+        <p>{{ post.preco|linebreaksbr }}</p>
+    </article>
+{% endblock %}
