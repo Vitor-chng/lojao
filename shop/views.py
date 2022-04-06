@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404
+from .forms import CriaVenda
+from .forms import CriaProduto
 from django.utils import timezone
 from .models import Venda
 from .models import Produto
@@ -11,3 +13,7 @@ def inicio(request):
 def pag2(request, pk):
     post = get_object_or_404(Produto, pk=pk)
     return render(request, 'shop/pag2.html', {'post': post})
+
+def novo(request):
+    form = CriaVenda()
+    return render(request, 'shop/edit.html', {'form': form})
