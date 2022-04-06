@@ -7,14 +7,14 @@
         <header>
             <h1><a href="/">Bora gastar</a></h1>
         </header>
-
-        <article>
-        </article>
-
-        <article>
-            <time>published: 14.06.2014, 12:14</time>
-            <h2><a href="">My second post</a></h2>
-            <p>coisas</p>
+        
+        {% for post in produtos %}
+            <article>
+                <h2><a href="">{{ post.nome }}</a></h2>
+                <p>{{ post.text|linebreaksbr }}</p>
+                <p>preço: {{ post.preco }}</p>
+            </article>
+        {% endfor %}
         </article>
     </body>
 </html>
