@@ -58,18 +58,20 @@ def compra(request,pk):
 def edicao(request,pk):
     
     produtos=get_object_or_404(Produto, pk=pk)
-    form = EditaProduto()
-    context={'produtos':produtos,'form': form}
-    return render(request,'shop/edicao.html',context)
-
+    if request.method == "POST":
+        form = EditaProduto(request.POST, instance=produtos)
+        if form.is_valid():
+            produtos = form.save(commit=False)
+            produtos.save()
+            return redirect('gerencia', pk=produtos.pk)
+    else:
+        form = EditaProduto(instance=produtos)
+    return render(request, 'shop/edicao.html', {'form': form})
 
 def final(request,arg):
-    #produtos=get_object_or_404(Produto, pk=arg)
-    #context={'produtos':produtos,'valor':valor}
     print(arg)
     var1=arg
     return render(request,'shop/final.html',{'var1':var1})
-
 
 def adiciona(request):
     if request.method == "POST":
