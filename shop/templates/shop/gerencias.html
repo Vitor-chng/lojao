@@ -1,0 +1,15 @@
+{% extends 'shop/base.html' %}
+
+
+{% block content %}
+    <h1><a href="adiciona">Adicionar Produto</a></h1>
+    {% for post in produtos %}
+        <article class="post">
+            <h2><a href="{% url 'gerencia' pk=post.pk %}">{{ post.nome }}</a></h2>
+            <p>Quantidade: {{ post.estoque|linebreaksbr }}</p>
+            <p>Preço: {{ post.preco|linebreaksbr }}</p>
+
+            <h3><a href="{% url 'edicao' pk=post.pk %}">Editar</h3>
+        </article>
+    {% endfor %}
+{% endblock %}

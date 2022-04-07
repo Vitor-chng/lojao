@@ -22,7 +22,7 @@ class Venda(models.Model):
         self.save()
 
     def __str__(self):
-        return self.cpf
+        return self.pk
 
 
 class Produto(models.Model):
@@ -32,8 +32,13 @@ class Produto(models.Model):
     imagem = models.CharField(max_length=200)
     idproduto = models.CharField(max_length=200)
 
+    def precoo(self):
+        return self.preco
+
     def publish(self):
         self.save()
 
     def __str__(self):
         return self.nome
+
+

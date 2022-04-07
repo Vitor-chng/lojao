@@ -1,0 +1,9 @@
+{% extends 'shop/base.html' %}
+
+{% block content %}
+    <article class="produtos">
+        <h2>Nome:{{ produtos.nome }}</h2>
+        <p>Preço: {{ produtos.preco|linebreaksbr }}</p>
+        <p>Estoque: {{ produtos.estoque|linebreaksbr }}</p>
+    </article>
+{% endblock %}
