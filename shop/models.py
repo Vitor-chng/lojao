@@ -22,7 +22,7 @@ class Venda(models.Model):
         self.save()
 
     def __str__(self):
-        return self.pk
+        return self.nome
 
 
 class Produto(models.Model):
@@ -31,9 +31,6 @@ class Produto(models.Model):
     estoque = models.PositiveIntegerField(default=0)
     imagem = models.CharField(max_length=200)
     idproduto = models.CharField(max_length=200)
-
-    def precoo(self):
-        return self.preco
 
     def publish(self):
         self.save()

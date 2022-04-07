@@ -39,13 +39,21 @@ def catalogo(request,pk):
     context={'produtos':produtos}
     return render(request,'shop/catalogo.html',context)
 
+
 def compra(request,pk):
     produtos=get_object_or_404(Produto, pk=pk)
-    form = CriaVenda()
-    context={'form': form,'produtos':produtos}
-    #arg=pk
-    return render(request, 'shop/compra.html', context)
-   # redirect(reverse('final', arg))
+    if request.method == "POST":
+        form = CriaVenda(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.data = timezone.now()
+            post.valortotal = produtos.preco * post.quantidade
+            post.save()
+            return redirect('final',post.valortotal)
+    else:
+        form = CriaVenda()
+        context={'form':form}
+    return render(request, 'shop/compra.html',context)
 
 def edicao(request,pk):
     
@@ -56,13 +64,24 @@ def edicao(request,pk):
 
 
 def final(request,arg):
-    produtos=get_object_or_404(Produto, pk=arg)
-    context={'produtos':produtos}
-    return render(request,'shop/final.html',context)
+    #produtos=get_object_or_404(Produto, pk=arg)
+    #context={'produtos':produtos,'valor':valor}
+    print(arg)
+    var1=arg
+    return render(request,'shop/final.html',{'var1':var1})
 
 
 def adiciona(request):
-    
-    form = CriaProduto()
-    context={'form': form}
-    return render(request,'shop/adiciona.html',context)
+    if request.method == "POST":
+        form = CriaProduto(request.POST)
+
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.data = timezone.now()
+            post.idproduto = 1
+            post.save()
+            return redirect('gerencias')
+    else:
+        form = CriaProduto()
+        context={'form':form}
+    return render(request, 'shop/adiciona.html',context)
