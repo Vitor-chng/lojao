@@ -32,6 +32,9 @@ class Produto(models.Model):
     imagem = models.CharField(max_length=200)
     idproduto = models.CharField(max_length=200)
 
+    def subtrai(self,venda):
+        self.estoque = self.estoque - venda
+
     def publish(self):
         self.save()
 
