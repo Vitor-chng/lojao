@@ -29,8 +29,9 @@ class Produto(models.Model):
     nome = models.CharField(max_length=200)
     preco = models.PositiveIntegerField(default=999999)
     estoque = models.PositiveIntegerField(default=0)
-    imagem = models.CharField(max_length=200)
-    idproduto = models.CharField(max_length=200)
+    imagem = models.ImageField(blank=True,null=True)
+    idproduto = models.PositiveIntegerField(default=0)
+
 
     def subtrai(self,venda):
         self.estoque = self.estoque - venda
@@ -40,5 +41,4 @@ class Produto(models.Model):
 
     def __str__(self):
         return self.nome
-
 

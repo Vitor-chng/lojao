@@ -5,5 +5,10 @@
         <h2>Nome:{{ produtos.nome }}</h2>
         <p>Preço: {{ produtos.preco|linebreaksbr }}</p>
         <p>Estoque: {{ produtos.estoque|linebreaksbr }}</p>
+        {% if produtos.imagem != None %}
+        <div class="row center">
+            <img class="responsive-img" src="{{ produtos.imagem.url }}" alt="Logo">
+        </div>
+        {% endif %}   
     </article>
 {% endblock %}

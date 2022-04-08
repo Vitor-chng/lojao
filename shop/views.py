@@ -64,7 +64,7 @@ def edicao(request,pk):
     
     produtos=get_object_or_404(Produto, pk=pk)
     if request.method == "POST":
-        form = EditaProduto(request.POST, instance=produtos)
+        form = EditaProduto(request.POST,request.FILES, instance=produtos)
         if form.is_valid():
             produtos = form.save(commit=False)
             produtos.save()
@@ -80,7 +80,7 @@ def final(request,arg):
 
 def adiciona(request):
     if request.method == "POST":
-        form = CriaProduto(request.POST)
+        form = CriaProduto(request.POST,request.FILES)
 
         if form.is_valid():
             post = form.save(commit=False)

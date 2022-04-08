@@ -8,6 +8,12 @@
             <h2><a href="{% url 'gerencia' pk=post.pk %}">{{ post.nome }}</a></h2>
             <p>Quantidade: {{ post.estoque|linebreaksbr }}</p>
             <p>Preço: {{ post.preco|linebreaksbr }}</p>
+            
+            {% if post.imagem != None %}
+            <div class="row center">
+                <img class="responsive-img" src="{{ post.imagem.url }}" alt="Logo">
+            </div>
+            {% endif %}            
 
             <h3><a href="{% url 'edicao' pk=post.pk %}">Editar</h3>
         </article>

@@ -7,8 +7,14 @@
             <h2><a href="{% url 'catalogo' pk=post.pk %}">{{ post.nome }}</a></h2>
             <p>Quantidade: {{ post.estoque|linebreaksbr }}</p>
             <p>Preço: {{ post.preco|linebreaksbr }}</p>
-
             <h3><a href="{% url 'compra' pk=post.pk %}">Comprar</h3>
+            {% if post.imagem != None %}
+            <div class="row center">
+                <img class="responsive-img" src="{{ post.imagem.url }}" alt="Logo">
+            </div>
+            {% endif %}   
+
+           
         </article>
     {% endfor %}
 {% endblock %}
